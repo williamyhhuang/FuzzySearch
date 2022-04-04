@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FuzzySearchDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Follow">
+          <Key>
+            <PropertyRef Name="Follow_Id" />
+          </Key>
+          <Property Name="Follow_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Follow_PersonId" Type="bigint" Nullable="false" />
+          <Property Name="Follow_FollowPersonId" Type="bigint" Nullable="false" />
+          <Property Name="Follow_Frequency" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Person_Id" />
+          </Key>
+          <Property Name="Person_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Person_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Person_Location" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Post_Id" />
+          </Key>
+          <Property Name="Post_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Post_PersonId" Type="bigint" Nullable="false" />
+          <Property Name="Post_Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Post_WordsCount" Type="int" Nullable="false" />
+          <Property Name="Post_UpdatedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Tag_Id" />
+          </Key>
+          <Property Name="Tag_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tag_Keyword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tag_Frequency" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TagPost">
+          <Key>
+            <PropertyRef Name="TagPost_Id" />
+          </Key>
+          <Property Name="TagPost_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagPost_TagId" Type="bigint" Nullable="false" />
+          <Property Name="TagPost_PostId" Type="bigint" Nullable="false" />
+          <Property Name="TagPost_Frequency" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="FuzzySearchDBModelStoreContainer">
+          <EntitySet Name="Follow" EntityType="Self.Follow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagPost" EntityType="Self.TagPost" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FuzzySearchDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Follow">
+          <Key>
+            <PropertyRef Name="Follow_Id" />
+          </Key>
+          <Property Name="Follow_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Follow_PersonId" Type="Int64" Nullable="false" />
+          <Property Name="Follow_FollowPersonId" Type="Int64" Nullable="false" />
+          <Property Name="Follow_Frequency" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Person_Id" />
+          </Key>
+          <Property Name="Person_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Person_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Person_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Post_Id" />
+          </Key>
+          <Property Name="Post_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Post_PersonId" Type="Int64" Nullable="false" />
+          <Property Name="Post_Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Post_UpdatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Post_WordsCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Tag_Id" />
+          </Key>
+          <Property Name="Tag_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tag_Keyword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tag_Frequency" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TagPost">
+          <Key>
+            <PropertyRef Name="TagPost_Id" />
+          </Key>
+          <Property Name="TagPost_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagPost_TagId" Type="Int64" Nullable="false" />
+          <Property Name="TagPost_PostId" Type="Int64" Nullable="false" />
+          <Property Name="TagPost_Frequency" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="FuzzySearchDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Follow" EntityType="Self.Follow" />
+          <EntitySet Name="Person" EntityType="Self.Person" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" />
+          <EntitySet Name="TagPost" EntityType="Self.TagPost" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FuzzySearchDBModelStoreContainer" CdmEntityContainer="FuzzySearchDBEntities1">
+          <EntitySetMapping Name="Follow">
+            <EntityTypeMapping TypeName="FuzzySearchDBModel.Follow">
+              <MappingFragment StoreEntitySet="Follow">
+                <ScalarProperty Name="Follow_Id" ColumnName="Follow_Id" />
+                <ScalarProperty Name="Follow_PersonId" ColumnName="Follow_PersonId" />
+                <ScalarProperty Name="Follow_FollowPersonId" ColumnName="Follow_FollowPersonId" />
+                <ScalarProperty Name="Follow_Frequency" ColumnName="Follow_Frequency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="FuzzySearchDBModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
+                <ScalarProperty Name="Person_Name" ColumnName="Person_Name" />
+                <ScalarProperty Name="Person_Location" ColumnName="Person_Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="FuzzySearchDBModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Post_WordsCount" ColumnName="Post_WordsCount" />
+                <ScalarProperty Name="Post_Id" ColumnName="Post_Id" />
+                <ScalarProperty Name="Post_PersonId" ColumnName="Post_PersonId" />
+                <ScalarProperty Name="Post_Title" ColumnName="Post_Title" />
+                <ScalarProperty Name="Post_UpdatedDateTime" ColumnName="Post_UpdatedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="FuzzySearchDBModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="Tag_Id" ColumnName="Tag_Id" />
+                <ScalarProperty Name="Tag_Keyword" ColumnName="Tag_Keyword" />
+                <ScalarProperty Name="Tag_Frequency" ColumnName="Tag_Frequency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagPost">
+            <EntityTypeMapping TypeName="FuzzySearchDBModel.TagPost">
+              <MappingFragment StoreEntitySet="TagPost">
+                <ScalarProperty Name="TagPost_Frequency" ColumnName="TagPost_Frequency" />
+                <ScalarProperty Name="TagPost_Id" ColumnName="TagPost_Id" />
+                <ScalarProperty Name="TagPost_TagId" ColumnName="TagPost_TagId" />
+                <ScalarProperty Name="TagPost_PostId" ColumnName="TagPost_PostId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

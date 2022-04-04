@@ -1,0 +1,16 @@
+BusinessLogic/bin/
+BusinessLogic/obj/Debug/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+DataAccess/bin/Debug/DataAccess.dll
+DataAccess/bin/
+DataAccess/obj/
+FuzzySearch/bin/
+FuzzySearch/obj/
+FuzzySearch/packages/
+Repositories/obj/
+Repositories/bin/
+BusinessLogic/obj/
+建表.sql
+words.txt
+DataAccess/App.Config
+FuzzySearch/App.config
+Repositories/App.config
