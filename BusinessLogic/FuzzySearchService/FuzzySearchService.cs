@@ -44,10 +44,6 @@ namespace BusinessLogic.FuzzySearchService
                 }
             }
 
-            var tagPosts = this.repo.GetTagPosts(tagDistanceDict.Keys);
-
-            List<IGrouping<long, Entity>> bb = Calculate(tagDistanceDict, tagPosts);
-
             return tagDistanceDict;
         }
 
@@ -59,11 +55,12 @@ namespace BusinessLogic.FuzzySearchService
         /// <returns></returns>
         public List<IGrouping<long, Entity>> Calculate(Dictionary<long, int> tagDistanceDict, IEnumerable<TagPost> tagPosts)
         {
-            var aa = this.GetTfIdfScore(tagPosts, tagDistanceDict);
-            var bb = aa.GroupBy(i => i.TagId).ToList();
-            bb.ForEach(i => i.OrderBy(x => x.TagDistance).ThenByDescending(x => x.TfIdf));
+            var score = this.GetTfIdfScore(tagPosts, tagDistanceDict)
+                            .GroupBy(i => i.TagId).ToList();
 
-            return bb;
+            score.ForEach(i => i.OrderBy(x => x.TagDistance).ThenByDescending(x => x.TfIdf));
+
+            return score;
         }
 
         /// <summary>

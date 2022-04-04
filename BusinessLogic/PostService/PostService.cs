@@ -65,7 +65,7 @@ namespace BusinessLogic.PostService
             {
                 Console.WriteLine($"Now PostId:{postId}");
 
-                string contents = this.GetPost(postId);
+                string contents = this.GetPostContent(postId);
 
                 //// 斷詞
                 var list = contents.Split(' ').ToList();
@@ -122,6 +122,13 @@ namespace BusinessLogic.PostService
             return result;
         }
 
+        public IEnumerable<string> GetPostNames(IEnumerable<long> postIds)
+        {
+            var result = this.repo.GetPostNames(postIds);
+
+            return result;
+        }
+
         /// <summary>
         /// InsertOrUpdateTag
         /// </summary>
@@ -158,11 +165,11 @@ namespace BusinessLogic.PostService
         }
 
         /// <summary>
-        /// GetPost
+        /// GetPostContent
         /// </summary>
         /// <param name="postId"></param>
         /// <returns></returns>
-        private string GetPost(long postId)
+        private string GetPostContent(long postId)
         {
             var result = string.Empty;
             

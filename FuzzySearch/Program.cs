@@ -36,7 +36,13 @@ namespace FuzzySearch
             //// 找出貼文
             var posts = postService.GetTagPosts(keywords.Keys);
 
-            var r = fuzzySearchService.Calculate(keywords, posts);
+            //// 計算分數
+            var scoredPosts = fuzzySearchService.Calculate(keywords, posts);
+
+            var result = postService.GetPostNames(posts.Select(i => i.TagPost_PostId));
+
+            Console.WriteLine($"符合的貼文為:{string.Join(",", result)}");
+            Console.ReadKey();
         }
     }
 }

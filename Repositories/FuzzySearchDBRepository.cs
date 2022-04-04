@@ -37,6 +37,15 @@ namespace Repositories
             return result.FirstOrDefault();
         }
 
+        public IEnumerable<string> GetPostNames(IEnumerable<long> postIds)
+        {
+            var result = from post in this.DbContext.Post
+                         where postIds.Contains(post.Post_Id)
+                         select post.Post_Title;
+
+            return result;
+        }
+
         /// <summary>
         /// InsertPost
         /// </summary>
@@ -99,7 +108,7 @@ namespace Repositories
             this.DbContext.Tag.Attach(tag);
             this.DbContext.Entry(tag).State = EntityState.Modified;
             this.DbContext.SaveChanges();
-            
+
             return tag.Tag_Id;
         }
 
