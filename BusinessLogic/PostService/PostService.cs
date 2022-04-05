@@ -115,6 +115,11 @@ namespace BusinessLogic.PostService
             return result;
         }
 
+        /// <summary>
+        /// GetTagPosts
+        /// </summary>
+        /// <param name="tagIds">tagIds</param>
+        /// <returns>TagPosts</returns>
         public IEnumerable<TagPost> GetTagPosts(IEnumerable<long> tagIds)
         {
             var result = this.repo.GetTagPosts(tagIds);
@@ -122,6 +127,11 @@ namespace BusinessLogic.PostService
             return result;
         }
 
+        /// <summary>
+        /// GetPostNames
+        /// </summary>
+        /// <param name="postIds">postIds</param>
+        /// <returns>PostNames</returns>
         public IEnumerable<string> GetPostNames(IEnumerable<long> postIds)
         {
             var result = this.repo.GetPostNames(postIds);
@@ -243,8 +253,9 @@ namespace BusinessLogic.PostService
                 { 
                     "apple",
                     "book",
-                    "cat",
-                    "cad",
+                    "acat", // 這三個會被搜尋到
+                    "cat",  // 這三個會被搜尋到
+                    "cad",  // 這三個會被搜尋到
                     "dog",
                     "egg",
                     "fish",
